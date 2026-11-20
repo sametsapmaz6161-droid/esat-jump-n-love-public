@@ -2766,9 +2766,9 @@ function drawAlinaPlayButton(){
  }
  g.restore();
 }
-function confirmAlinaStart(){if(mode!=='stormTitle'||alinaStartFeedbackAt)return;alinaStartFeedbackAt=performance.now();status.textContent='ALINA · WELT WIRD GELADEN …';}
+function confirmAlinaStart(){if(mode!=='stormTitle'||alinaStartFeedbackAt)return;if(!window.esatUnlock?.released('alina')){alert(window.esatUnlock?.message('alina')||'Gesperrt bis 27.11.2026, 18:00 Uhr');return;}alinaStartFeedbackAt=performance.now();status.textContent='ALINA · WELT WIRD GELADEN …';}
 function enterStormTitle(){stopAlinaAmbient();alinaFightMusic.pause();alinaFightMusic.currentTime=0;++jessicaMenuFadeId;for(const track of [jessicaMenuMusic,jessicaCrimsonMusic,jessicaFarewellMusic,bossMusic,levelMusic]){track.pause();track.currentTime=0;}mode='stormTitle';alinaStartFeedbackAt=0;alinaPlayHover=false;alinaEsatAnimStart=performance.now();talk=null;status.textContent='ALINA · DIE STURMWELT';alinaTitleMusic.currentTime=0;startAlinaTitleMusic();}
-function enterStormLevel(){
+function enterStormLevel(){if(!window.esatUnlock?.released('alina')||!window.esatUnlock?.sarahCompleted()){alert(!window.esatUnlock?.sarahCompleted()?'🔒 Schließe zuerst Sarahs Level ab!':window.esatUnlock.message('alina'));return;}
  stopAlinaAmbient();alinaTitleMusic.pause();alinaTitleMusic.currentTime=0;
  alinaFightMusic.pause();alinaFightMusic.currentTime=0;
  // Entering Alina must cancel Jessica's menu fade and silence every previous soundtrack.

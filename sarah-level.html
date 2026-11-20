@@ -1330,7 +1330,7 @@ if(world3StoryPhase==='push'){
     snd(810,.35);
    }
    if(world3StoryPhase==='phase3won'&&world3ExitScene==='enter'&&world3ExitClock>=48){
-    world3ExitScene='done';
+    world3ExitScene='done';window.esatUnlock?.completeSarah();
     if(window.portalWarp)window.portalWarp('index.html?level=alina','alina');
     else window.location.href='index.html?level=alina';
     return;
@@ -4076,7 +4076,7 @@ function loop(t){
  requestAnimationFrame(loop);
 }
 document.addEventListener('visibilitychange',()=>{previousFrameTime=null;simulationAccumulator=0});const toggle=document.createElement('button');toggle.id='damageToggle';toggle.textContent='⚔ Schaden: AN';toggle.style.cssText='margin:6px;padding:9px 13px;background:#482448;color:#fff;border:2px solid #ff8bda;border-radius:8px;cursor:pointer;font-weight:bold';document.getElementById('game').insertAdjacentElement('afterend',toggle);toggle.onclick=()=>{godMode=!godMode;toggle.textContent=godMode?'🛡 Testmodus: AN':'⚔ Schaden: AN';status.textContent=godMode?'TESTMODUS: Unverwundbar':'SOULSLIKE: Schaden aktiv · 3 Herzen';};document.getElementById('nextDialog').addEventListener('pointerdown',e=>{e.preventDefault();if(talk)nextTalk();});
-document.getElementById('start').onclick=()=>{reset(mode==='dead'&&!!level2Checkpoint);if(mode==='play')startLevelMusic();};document.getElementById('jumpSarah').onclick=()=>{
+document.getElementById('start').onclick=()=>{if(!window.esatUnlock?.released('sarah')){alert(window.esatUnlock?.message('sarah')||'Gesperrt bis 24.11.2026, 18:00 Uhr');return;}reset(mode==='dead'&&!!level2Checkpoint);if(mode==='play')startLevelMusic();};document.getElementById('jumpSarah').onclick=()=>{
  reset();dreamWorld=2;dreamTransition=0;dreamWarning=0;
  sarahState='gone';platforms.push(...nightmarePlatforms);
  skipWorld2Monsters=true;cursedPatrols=[];cursedEnemyBullets=[];
@@ -4266,7 +4266,7 @@ cv.addEventListener('pointermove',e=>{
 cv.addEventListener('pointerleave',()=>{sarahPlayHover=false;cv.style.cursor='';});
 cv.addEventListener('click',e=>{if(mode==='menu'){
  const rect=cv.getBoundingClientRect(),x=(e.clientX-rect.left)*cv.width/rect.width,y=(e.clientY-rect.top)*cv.height/rect.height;
- if(x>=212&&x<=428&&y>=203&&y<=258&&!sarahPlayClickAt)sarahPlayClickAt=performance.now();
+ if(x>=212&&x<=428&&y>=203&&y<=258&&!sarahPlayClickAt){if(!window.esatUnlock?.released('sarah')){alert(window.esatUnlock?.message('sarah')||'Gesperrt bis 24.11.2026, 18:00 Uhr');return;}sarahPlayClickAt=performance.now();}
  return;
 }if(mode==='pause')return;if(weaponRewardOpen)return;if(talk){nextTalk();return;}if(mode==='menu'||mode==='dead'){reset(mode==='dead'&&checkpoint);if(mode==='play')startLevelMusic();else syncBossMusic()}});requestAnimationFrame(loop)})();
-</script><script src="portal-transition.js"></script></body></html>
+</script><script src="level-unlock.js"></script><script src="world-buttons.js"></script><script src="portal-transition.js"></script></body></html>
