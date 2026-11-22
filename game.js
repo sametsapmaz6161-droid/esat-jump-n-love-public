@@ -2465,11 +2465,11 @@ function enterJessicaLevel(){
  // Seed rabbits at different points of their descent so the first tiers aren't empty.
  // Keep the starting area clear and leave room for later rabbits from the throne.
  for(let tier=1;tier<=5;tier++){
-  const count=tier<=3?5:3;
+  const count=tier<=3?3:2;
   for(let i=0;i<count;i++){
    // Even tiers travel left, odd tiers travel right, always toward lower tiers.
    const dir=tier%2===0?-1:1;
-   const x=170+i*(tier<=3?175:260);
+   const x=170+i*(tier<=3?290:390);
    const rabbit={tier,x,dir,w:23,h:22,speed:1.65+(tier+i)%3*.3,phase:(tier*2+i)*.7};
    rabbit.y=jessicaSurfaceY(jessicaLevel.platforms[tier],rabbit.x+rabbit.w/2)-rabbit.h;
    jessicaLevel.rabbits.push(rabbit);
@@ -2531,7 +2531,7 @@ function updateJessicaRabbits(){
  const level=jessicaLevel;
  if(level.rabbitInv>0)level.rabbitInv--;
  level.rabbitClock++;
- if(!level.spawnsStopped&&level.rabbitClock>=30&&level.rabbits.length<32){
+ if(!level.spawnsStopped&&level.rabbitClock>=90&&level.rabbits.length<16){
   level.rabbitClock=0;
   level.rabbits.push({tier:6,x:JESSICA_LENGTH-75,dir:-1,w:23,h:22,speed:1.65+Math.random()*.75,phase:Math.random()*6});
  }
