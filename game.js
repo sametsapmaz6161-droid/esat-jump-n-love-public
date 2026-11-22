@@ -4479,7 +4479,7 @@ function drawJessicaLevel(){
   }else drawHero(p.x-cam,p.y);
   if(jessicaLevel.outsideTitleClock>0&&jessicaLevel.outsideArrival===0){const elapsed=190-jessicaLevel.outsideTitleClock;const alpha=Math.max(0,Math.min(1,elapsed/38,jessicaLevel.outsideTitleClock/35));g.save();g.globalAlpha=alpha;r(0,0,W,H,'#130d20e8');text('BOSS BESIEGT',320,124,17,'#e7bd72','center');text('LOVE DESTROYED',320,174,34,'#e7bd72','center');text('Jessica – Die Kaninchenkönigin',320,204,14,'#f3c6df','center');g.restore();}
   if(jessicaLevel.outsidePortalEntered){
-   r(0,0,W,H,'#130b24df');text('FORTSETZUNG FOLGT',W/2,H/2,28,'#f7c5ff','center');
+   r(0,0,W,H,'#130b24df');
   }
   // Keep the same unified HUD outside the castle.
   drawJessicaHUD();
